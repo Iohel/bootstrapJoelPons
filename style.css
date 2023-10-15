@@ -1,0 +1,33 @@
+body{
+    background-color: #f3f4f2;
+}
+img{
+    background-color: #f3f4f2;
+}
+header{
+    background-color: #3d85c6;
+}
+footer{
+    background-color: #3d85c6;
+    border-color: black;
+}
+a{
+    color: #f3f4f2;
+}
+.img-thumbnail{
+    background-color: #3d85c6;
+    
+}
+section{
+    color:#f3f4f2;
+}
+p{
+    color: black;
+}
+i{
+    color: #030303;
+}
+button{
+    background-color: #3d85c6;
+    color: white;
+}
