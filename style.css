@@ -1,25 +1,25 @@
 body{
-    background-color: #f3f4f2;
+    background-color: #f2f4f3;
 }
 img{
-    background-color: #f3f4f2;
+    background-color: #f2f4f3;
 }
 header{
     background-color: #3d85c6;
 }
 footer{
-    background-color: #3d85c6;
-    border-color: black;
+    background-color: #8dc63e;
+    border-color: #333333;
 }
 a{
-    color: #f3f4f2;
+    color: #333333;
 }
 .img-thumbnail{
     background-color: #3d85c6;
     
 }
 section{
-    color:#f3f4f2;
+    color:#f2f4f3;
 }
 p{
     color: black;
