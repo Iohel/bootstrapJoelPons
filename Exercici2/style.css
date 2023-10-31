@@ -14,6 +14,9 @@ footer{
 a{
     color: #333333;
 }
+button a{
+    color: #f2f4f3;
+}
 .img-thumbnail{
     background-color: #3d85c6;
     
