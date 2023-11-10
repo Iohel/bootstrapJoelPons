@@ -1,0 +1,40 @@
+body{
+    background-image: url(../img/1080p_HD_Space_Background.jpg);
+    font-family: "SourceSans3";
+}
+
+input[type=submit]:hover{
+    background-color: #3d85c6;
+}
+
+img{
+    max-height: 200px;    
+    max-width: 200px; 
+}
+
+.image-option img{
+    opacity: 0.5;
+    max-width: 100px;
+    max-height: 100px;
+    
+}
+
+.image-option img:hover{
+    opacity: 1;
+    max-width: 150px;
+    max-height: 150px;
+    
+    
+}
+
+.image-option input:checked + img{
+    opacity: 1;
+    max-width: 150px;
+    max-height: 150px;
+    border-width: 10cm;
+}
+
+input[type=radio]{
+    display: none;
+}
+
