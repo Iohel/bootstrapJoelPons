@@ -1,0 +1,162 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+@media screen and (max-width:900px){
+    header img{
+        max-width: 100px;
+    }
+    #top_header{
+        text-align: center;
+       
+    }
+    #bottom_header {
+        text-align: center;
+        
+    }
+    #bottom_header li{
+        display: inline-block;
+        margin: 10px;  
+    }
+    #bottom_header div{
+        text-align: end;
+    }
+    
+    li a{
+        text-decoration: none;
+        color: #000;
+    }
+    li a:hover{
+        text-decoration: underline;
+        color: orange;
+        
+    }
+    aside{
+        float: left;
+        position: static;
+        width: 100%;
+        
+        
+    }
+    
+    
+    h1{
+        text-align: start;
+        
+    }
+    
+    #products-filter div{
+        background-color: lightgray;
+        text-align: start;
+        
+    }
+    
+    article{
+        width: 400px;
+        display: inline-block;
+        margin: 0.5;
+    }
+    
+    article img{
+        width: 400px;
+    }
+    article span{
+        display: block;
+        text-align: start;
+    }
+    .product-name{
+        font-weight: 800;
+    }
+    footer{
+        background-color: lightgray;
+    }
+    
+}
+
+/* Desktop */
+@media screen and (min-width:901px){
+    header img{
+        max-width: 100px;
+    }
+    #top_header{
+        text-align: center;
+       
+    }
+    #bottom_header {
+        text-align: center;
+        
+    }
+    #bottom_header li{
+        display: inline-block;
+        margin: 10px;
+        
+    }
+    #bottom_header div{
+        text-align: end;
+        position: relative;
+        bottom: 30px;
+        
+    }
+    
+    li a{
+        text-decoration: none;
+        color: #000;
+    }
+    li a:hover{
+        text-decoration: underline;
+        color: orange;
+        
+    }
+    aside{
+        float: left;
+        padding-left: 20px;
+         
+        text-align: center;
+    }
+    li.list-group{
+        margin-bottom: 20px;
+        list-style: none;
+    }
+    ul{
+        list-style: none;
+    }
+   
+    h1{
+        text-align: start;
+        margin-left: 189px;
+    }
+    #products-filter{
+        background-color: lightgray;
+        margin-left: 189px;
+        padding: 20px;
+        
+    }
+    #products-filter div{
+        background-color: lightgray;
+        text-align: start;
+    }
+    
+    article{
+        width: 400px;
+        display: inline-block;
+        margin: 0.5;
+    }
+    
+    article img{
+        width: 400px;
+    }
+    article span{
+        display: block;
+        text-align: start;
+    }
+    .product-name{
+        font-weight: 800;
+    }
+    footer{
+        background-color: lightgray;
+    }
+    
+    
+}
