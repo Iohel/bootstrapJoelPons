@@ -1,0 +1,68 @@
+body{
+    background-image: url(../Images/1080p_HD_Space_Background.jpg);
+}
+
+form{
+    /* Change Color */
+    background-image: linear-gradient(to bottom right,#8dc63e, #3d85c6);
+    
+}
+
+h2,h3{
+    text-shadow: 2px 2px 1px #3d85c6;
+}
+
+section{
+    animation-name: slide;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes slide {
+    0%   {background-color:#8dc63e; color: #333333}
+    50%  {background-color:#3d85c6; color: #f2f4f3;}
+    100%  {background-color:#8dc63e; color: #333333;}
+}
+
+input[type=submit]{
+    transition: background 1s;
+}
+
+input[type=submit]:hover{
+    background-color: #3d85c6;  
+}
+
+img{
+    max-height: 200px;    
+    max-width: 200px; 
+}
+
+.image-rotate:hover{
+    transform: rotate(90deg);
+}
+
+.image-option img{
+    opacity: 0.5;
+    max-width: 100px;
+    max-height: 100px;
+    transition: max-height,max-width 1s;
+}
+
+.image-option img:hover{
+    opacity: 1;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.image-option input:checked + img{
+    opacity: 1;
+    max-width: 150px;
+    max-height: 150px;
+    border-width: 10cm;
+}
+
+input[type=radio]{
+    display: none;
+}
+
+

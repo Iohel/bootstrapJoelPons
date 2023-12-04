@@ -1,0 +1,22 @@
+$primary:#8dc63e;
+$secondary:#3d85c6;
+$light:#f2f4f3;
+$dark:#333333;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "light":      $light,
+  "dark":       $dark
+);
+
+@font-face {
+    font-family: "SourceSans3";
+    src: url(./Source_Sans_3/SourceSans3-VariableFont_wght.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$font-family-base: "SourceSans3";
+
+@import "../node_modules/bootstrap/scss/bootstrap";
