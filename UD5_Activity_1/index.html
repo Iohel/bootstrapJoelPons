@@ -24,8 +24,10 @@
             <button class="col bg-secondary text-light">Contact</button>
             <button class="col bg-secondary text-light">Settings</button>
             <button class="col bg-secondary text-light"  id="login_username">Username</button>
+            <p id="login_id" hidden></p>
             <button class="col bg-secondary" id="register_page"><a class="text-light" href="./registerPage.html">Register</a></button>
             <button class="col bg-secondary text-light" id="login_page"><a class="text-light" href="./loginPage.html">Login</a></button>
+            <button class="col bg-secondary text-light" id="logout"><a class="text-light">Logout</a></button>
         </div>
         <section class="row d-sm-flex d-md-none">
             <section class="col-1 border">
@@ -111,6 +113,7 @@
             <a href="" class="col border text-dark">Discord</a>
         </div>
     </footer>
+    <script src="./javascript/node_modules/crypto-js/crypto-js.js"></script>
     <script src="./javascript/database.js"></script>
 </body>
 </html>

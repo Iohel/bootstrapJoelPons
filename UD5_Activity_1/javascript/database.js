@@ -7,6 +7,7 @@ window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 var database = "JoelDB";
 const DB_STORE_NAME = 'users';
 const DB_VERSION = 1;
+const key = "o7kTDg78egG1vAGY46xut0gT9nneSWp4cUH3miMbhGU8JhRgNxpKrj7z8KkiCovq";
 var db;
 var opened = false;
 /**
@@ -68,13 +69,14 @@ function addUser(db){
     let image_name = document.querySelector('input[name="image"]:checked');
     let administrador = document.querySelector('.checkbox input:checked');
     let administradorValue;
+    
     if (administrador != null) {
         administradorValue = '1';
     }else{
         administradorValue = '0';
     }
-    
-    let obj = { email: email.value, username: username.value, password: password.value, image_name: image_name.value, administrador: administradorValue};
+    console.log(encodePassword(password.value));
+    let obj = { email: email.value, username: username.value, password: encodePassword(password.value), image_name: image_name.value, administrador: administradorValue, logged: 1};
     //let obj = { email: email, username: username, password: password};
     var tx = db.transaction(DB_STORE_NAME, "readwrite");
     var store = tx.objectStore(DB_STORE_NAME);
@@ -90,10 +92,12 @@ function addUser(db){
         console.log("addUser: Data insertion successfully done. Id: "
         + e.target.result);
         // Operations we want to do after inserting data
-        if(e.target.result.administrador == 0){
-            location.href = '/UD5_Activity_1/index.html';
+        console.log(administrador);
+        if(administradorValue === '0'){
+            setTimeout("",10000);
+            location.href = './index.html';
         }else{
-            location.href = '/UD5_Activity_1/administrator.html';
+            location.href = './administrator.html';
         }
        
         
@@ -141,10 +145,10 @@ function readUser(e){
         };
     });
 }
-
 function readByUsername(db) {
     var username = document.getElementById('username').value; //Get value
     var password = document.getElementById('password').value; //Get value
+    
     console.log(username);
     var tx = db.transaction(DB_STORE_NAME, "readonly");
     var store = tx.objectStore(DB_STORE_NAME);
@@ -155,34 +159,30 @@ function readByUsername(db) {
         console.log("Error creating an index: " + e);
     }
     console.log("Indexed established");
-    var result = [];
+    
     //With this we could get just one object
-    var req = index.get(username);
+    var req = index.get('username');
     
     req.onsuccess = function(e){
         var record = e.target.result;
+        console.log(record);
         console.log("Found: " + record.username);
         console.log("Found: " + record.password);
-        if(username == record.username && password == record.password){
+        if(username == record.username && password == decryptPassword(password.value)){
             console.log("WORKING");
             location.href = '/UD5_Activity_1/index.html';
-        }else{
+        }else if(r){
+
+        }
+        else{
             console.log("Mistake");
+            
         }
     };
-    //With this we get all the matching records
-    /* var req2 = index.openCursor(username);
-        req2.onsuccess = function(e){
-        var cursor = e.target.result;
-        if (cursor){
-            console.log("Username: " + cursor.value.username);
-            cursor.continue();
-        }
-    }; */
+    
 }
-
 // Reads all the records from our ObjectStore
-function readUsers(db) {
+function readAllUsers(db) {
     var tx = db.transaction(DB_STORE_NAME, "readonly");
     var store = tx.objectStore(DB_STORE_NAME);
     var result = [];
@@ -201,18 +201,69 @@ function readUsers(db) {
             let prints = document.getElementById('print');
             let username = result[0].username;
             result.forEach(element => {
-                prints.innerHTML = prints.innerHTML + '<div>';
+                prints.innerHTML = prints.innerHTML + '<di>';
                 prints.innerHTML = prints.innerHTML + element.email + " | ";
                 prints.innerHTML = prints.innerHTML + element.username + " | ";
                 prints.innerHTML = prints.innerHTML + element.image_name + " | ";
-                prints.innerHTML = prints.innerHTML + element.administrador + '</div>';
+                prints.innerHTML = prints.innerHTML + element.administrador + '|';
+                prints.innerHTML = prints.innerHTML + "<input type='button' value='edit_user' id='edit_user'>" + '|';
+                prints.innerHTML = prints.innerHTML + "<input type='button' value='reset_password' id='reset_password'>" + '|';
+                prints.innerHTML = prints.innerHTML + "<input type='button' value='delete' id='delete'>" + '</div>';
                 console.log(prints.innerHTML);
-            });
-            console.log(username.toString());
+            });    
+        }
+    };
+
+
+    req.onerror = function(e){
+        console.error("readUsers: error reading data:",
+        e.target.errorCode);
+    };
+    tx.oncomplete = function() {
+        console.log("readUsers: tx completed");
+        db.close();
+        opened = false;       
+    };
+}
+function readUser(db) {
+    var tx = db.transaction(DB_STORE_NAME, "readonly");
+    var store = tx.objectStore(DB_STORE_NAME);
+    var result = [];
+    var req = store.openCursor();
+    req.onsuccess = function(e){
+        console.log(e);
+        var cursor = e.target.result;
+        console.log(cursor);
+        if (cursor) {
+            result.push(cursor.value);
+            cursor.continue();
+        } else {
+            console.log("EOF");
+            console.log(result);
+            //Operations to do after reading all the records
+            let login_username = document.getElementById('login_username');
+            let id = document.getElementById('login_id');
+            let register_page = document.getElementById('register_page');
+            let login_page = document.getElementById('login_page');
+            let logout = document.getElementById('logout');
             
-            console.log(prints.innerHTML);
-            
+            if(login_username.value != "Username"){
+                register_page.hidden = true;
+                login_page.hidden = true;
                 
+            }else{
+                
+                logout.hidden = true;
+            };
+            
+            result.forEach(element => {
+                console.log(element.id);
+                if (element.logged == 1) {
+                    login_username.innerText = element.username;
+                    id.innerText = element.id;
+                    
+                }
+            });
         }
     };
 
@@ -229,15 +280,45 @@ function readUsers(db) {
         
     };
 }
-/* function encodePassword() {
+function editLoginStatus(db){
+    var login_id = document.getElementById("login_id");
+    var obj = { id: parseInt(login_id.innerText), logged: 0};
+    var tx = db.transaction(DB_STORE_NAME, "readwrite");
+    var store = tx.objectStore(DB_STORE_NAME);
+    //Updates data in our ObjectStore
+    req = store.put(obj);
+    req.onsuccess = function (e) {
+        console.log("Data successfully updated");
+        //Operations to do after updating data
+        location.href = '/UD5_Activity_1/index.html';
+    };
+    req.onerror = function(e) {
+        console.error("editUser: Error updating data", this.error);
+    };
+    tx.oncomplete = function() {
+        console.log("editUser: tx completed");
+        db.close();
+        opened = false;
+    };
+}
+function encodePassword(e) {
     
-    let hash = CryptoJS.AES.encrypt("Message",test);
+    let hash = CryptoJS.AES.encrypt(e,key).toString();
     console.log('encript');
     console.log(hash);
-    
+    return hash;
 
    
-} */
+}
+function decryptPassword(e) {
+    
+    let hash = CryptoJS.AES.decrypt(e,key).toString();
+    console.log('encript');
+    console.log(hash);
+    return hash;
+
+   
+}
 
 //Form Checker
 const form = document.querySelector('form');
@@ -334,24 +415,6 @@ window.addEventListener('load', (event) => {
     openCreateDb(function () {
         console.log('Database');
     });
-    let login = true;
-    let username = document.getElementById('login_username');
-    let register_page = document.querySelector('#register_page');
-    let login_page = document.querySelector('#login_page');
-    let logout = document.querySelector('#logout');
-    
-
-    if(login){
-        if(document.title == 'Login Page'){
-            register_page.setAttribute("hidden",""); 
-            login_page.setAttribute("hidden","");
-        }
-    }else{
-        username.setAttribute("hidden","");
-        logout.setAttribute("hidden","");
-    }
-    
-
 })
 if(document.title == 'Register Page'){
     let insert = document.querySelector('#insert');
@@ -398,16 +461,23 @@ if (document.title == 'Login Page') {
     })
 }
 if(document.title == "Menorca Games"){
-    openCreateDb(readUser());
+    openCreateDb(readUser);
+    logout.addEventListener('click', (e)=>{
+        openCreateDb(editLoginStatus);
+    })
+    
 }
 if(document.title == "Admnistrator"){
-    let reload = document.getElementById('reload');
+    openCreateDb(readUser);
     reload.addEventListener('click', (e)=>{
         
         console.log("test");
     
-        openCreateDb(readUsers);
+        openCreateDb(readAllUsers);
+        
         
     }) 
-
+    logout.addEventListener('click', (e)=>{
+        openCreateDb(editLoginStatus);
+    })
 }
