@@ -1,0 +1,56 @@
+$main_color:#8dc63e;
+$secondary_color:#3d85c6;
+$custom_white:#f2f4f3;
+$custom_black:#333333;
+@mixin blue_section(){
+    background-color: $secondary_color;
+    color: $custom_white;
+}
+body{
+    text-align: center;
+    background-color: $custom_white;
+    h1{
+        text-align: center;
+        font-size: 10px * 4;
+    }
+    header{
+        
+        img{
+            background-color: $custom_white;
+            
+        }
+        button{
+            @include blue_section();
+            a{
+                color:$custom_white
+            }
+        }
+        section{
+            @include blue_section();
+            i{
+                color: $custom_black;
+            }
+        }
+        
+    }
+    footer{
+        
+        background-color: $main_color;
+        border-color: $custom_black;
+    }
+    div{
+        
+        article{
+            text-align: justify;
+            font-size: 10px*1.5; 
+        }
+        ul{
+            text-align: justify;
+            @include blue_section();
+            margin-top: 4em;
+        }
+    }
+    
+}
+
+
