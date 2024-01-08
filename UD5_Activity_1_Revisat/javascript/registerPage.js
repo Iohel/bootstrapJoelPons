@@ -13,8 +13,8 @@ function addUser(db){
     }else{
         administradorValue = '0';
     }
-    console.log(encodePassword(password.value));
-    obj = { email: email.value, username: username.value, password: encodePassword(password.value), image_name: image_name.value, administrador: administradorValue};
+    
+    obj = { email: email.value, username: username.value, password: password.value, image_name: image_name.value, administrador: administradorValue};
     //let obj = { email: email, username: username, password: password};
     var tx = db.transaction(DB_GENERAL_STORE_NAME, "readwrite");
     var store = tx.objectStore(DB_GENERAL_STORE_NAME);

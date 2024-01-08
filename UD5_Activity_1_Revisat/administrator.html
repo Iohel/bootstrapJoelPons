@@ -12,32 +12,67 @@
     <link rel="icon" href="./Images/Logo.png">
     
     <link rel="stylesheet" href="./css/x.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body class="">
     <header class="container text-center bg-light">
         <div class="row" id="index">
             <img src="./Images/Logo 2.png" alt="" class="col-1 ">
             <button class="col bg-secondary text-light" id="home">Home</button>
-            <button class="col bg-secondary text-light" id="reload">Reload</button>
             <button class="col bg-secondary text-light" id="login_username">Username</button>
             <p id="login_id" hidden></p>
             
             <button class="col bg-secondary text-light" id="logout">Logout</button>
         </div>
-        <!-- <section class="row d-sm-flex d-md-none">
-            <section class="col-1 border">
-                <i class="fi fi-br-menu-burger"></i>
-            </section>
-            <section class="col-9 border">test</section>
-            <section class="col-2 border">test</section>
-        </section> -->
     </header>
     <!--Desktop Version-->
     <main class="container text-center mb-5">
-        <div id="print">
-
+        <table id="print">
+            <tr>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Image</th>
+                <th>Edit</th>
+                <th>Reset</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+        <div class="envoltorio-popup">
+            <div class="popup">
+                <div class="cerrar-popup">x</div>
+                <div class="contenido-popup">
+                    <h2>Change user.</h2>
+                    <input id="id" type="text" value="" hidden>
+                    <div id="emailGroup" class="row-cols-auto">
+                        <label for="email" class="email">Email:</label>
+                        <input type="text" id="email" name="email" placeholder="Email" class="my-3" value="">
+                    </div>
+                    <div id="usernameGroup" class="row-cols-auto">
+                        <label for="username" class="username">Username:</label>     
+                        <input type="text" id="username" name="username" placeholder="Username" class="my-3" value="">
+                    </div>
+                    <input id="password" type="text" value="" hidden>
+                    <label id="adminGroup" for="" class="">User=0 Admin=1
+                        <input id="administrador" type="text" placeholder="" value="">
+                    </label>
+                    <div id="imageGroup" class="my-3">
+                        <label class="image-option">
+                            <input type="radio" name="image" value="2474564.png">        
+                            <img src="Images/2474564.png" class="mx-3 my-3">
+                        </label>
+                        <label class="image-option">
+                            <input type="radio" name="image" value="magic-the-gathering.jpg">        
+                            <img src="Images/magic-the-gathering.jpg" class="mx-3 my-3">
+                        </label>
+                        <label class="image-option"> 
+                            <input type="radio" name="image" value="pokeball.png">        
+                            <img src="Images/pokeball.png" class="mx-3 my-3">
+                        </label>
+                    </div>
+                    <a href="#" id="submit">Submit</a>
+                </div>
+            </div>
         </div>
-        
     </main>
     <script src="./javascript/node_modules/crypto-js/crypto-js.js"></script>
     <script src="./javascript/database.js"></script>

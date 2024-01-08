@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="icon" href="./Images/Logo.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/x.css">
+</head>
+    <body>
+        <header class="container text-center bg-light">
+            <div class="row d-none d-md-flex" id="index">
+                <img src="./Images/Logo 2.png" alt="" class="col-1 ">
+                <button class="col bg-secondary text-light">Home</button>
+                <button class="col bg-secondary text-light">Theme</button>
+                <button class="col bg-secondary text-light">Sort</button>
+                <button class="col bg-secondary text-light">Contact</button>
+                <button class="col bg-secondary text-light" id="admin" >Administrator</button>
+                <button class="col bg-secondary text-light" id="settings">Settings</button>
+                <button class="col bg-secondary text-light" id="login_username">Username</button>
+                <p id="login_id" hidden></p>
+                <button class="col bg-secondary" id="register_page"><a class="text-light" href="./registerPage.html">Register</a></button>
+                <button class="col bg-secondary text-light" id="login_page"><a class="text-light" href="./loginPage.html">Login</a></button>
+                <button class="col bg-secondary text-light" id="logout"><a class="text-light">Logout</a></button>
+            </div>
+            <section class="row d-sm-flex d-md-none">
+                <section class="col-1 border">
+                    <i class="fi fi-br-menu-burger"></i>
+                </section>
+                <section class="col-9 border">test</section>
+                <section class="col-2 border">test</section>
+            </section>
+        </header>
+        <div class="popup">
+            <h2>Change user.</h2>
+        <input id="id" type="text" value="" hidden>
+        <div id="emailGroup" class="row-cols-auto">
+            <label for="email" class="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Email" class="my-3" value="">
+        </div>
+        <div id="usernameGroup" class="row-cols-auto">
+            <label for="username" class="username">Username:</label>     
+            <input type="text" id="username" name="username" placeholder="Username" class="my-3" value="">
+        </div>
+        <div>
+            <label for="">Password:</label>
+            <input id="password" type="text" value="" >
+        </div>
+        <label id="adminGroup" for="" class="" hidden>User=0 Admin=1
+            <input id="administrador" type="text" placeholder="" value="">
+        </label>
+        <div id="imageGroup" class="my-3">
+            <label class="image-option">
+                <input type="radio" name="image" value="2474564.png">        
+                <img src="Images/2474564.png" class="mx-3 my-3">
+            </label>
+            <label class="image-option">
+                <input type="radio" name="image" value="magic-the-gathering.jpg">        
+                <img src="Images/magic-the-gathering.jpg" class="mx-3 my-3">
+            </label>
+            <label class="image-option"> 
+                <input type="radio" name="image" value="pokeball.png">        
+                <img src="Images/pokeball.png" class="mx-3 my-3">
+            </label>
+        </div>
+            <a href="#" id="submit">Submit</a> 
+            <a href="#" id="submit">Delete</a> 
+        </div>
+        <script src="./javascript/node_modules/crypto-js/crypto-js.js"></script>
+        <script src="./javascript/database.js"></script>
+        <script src="./javascript/settings.js"></script>
+    </body>
+</html>

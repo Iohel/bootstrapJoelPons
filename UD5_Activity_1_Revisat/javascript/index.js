@@ -18,24 +18,36 @@ function readUser(db) {
             let id = document.getElementById('login_id');
             let register_page = document.getElementById('register_page');
             let login_page = document.getElementById('login_page');
+            let settings = document.getElementById('settings');
             let logout = document.getElementById('logout');
-            
+            let administrador = document.getElementById('admin');
+            console.log(administrador);
             result.forEach(element => {
                 
                 if (element != null) {
                     login_username.innerText = element.username;
                     id.innerText = element.id;
-                    
+                    if (element.administrador != 1) {
+                        administrador.hidden = true;
+                    }
                 }else{
+                    administrador.hidden = true;
+                    console.log(administrador.hidden);
                     login_username.innerText = "Username";
+                    
                 }
+                
             });
             console.log(login_username.innerText);
             if(login_username.innerText == "Username"){
                 logout.hidden = true;
+                settings.hidden = true;
+                administrador.hidden = true;
             }else{
                 register_page.hidden = true;
                 login_page.hidden = true;
+                
+                
             };
             
             
@@ -64,7 +76,7 @@ function deleteUser(db){
     req.onsuccess = function(e){
         console.log("deleteUser: Data successfully removed");
         //Operation to do after deleting a record
-        location.href = '/index.html';
+        location.href = '/UD5_Activity_1_Revisat/index.html';
     };
     req.onerror = function(e){
         console.error("deleteUser: error removing data:",
@@ -84,6 +96,14 @@ window.addEventListener('load', (event) => {
 })
 
 openCreateDb(readUser);
+let logout = document.getElementById('logout');
+let administrador = document.getElementById('admin');
 logout.addEventListener('click', (e)=>{
     openCreateDb(deleteUser);
+})
+administrador.addEventListener('click',(e)=>{
+    location.href = "/UD5_Activity_1_Revisat/administrator.html";
+})
+settings.addEventListener('click',(e)=>{
+    location.href = "/UD5_Activity_1_Revisat/settings.html"
 })
